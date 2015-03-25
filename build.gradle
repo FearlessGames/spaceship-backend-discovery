@@ -5,9 +5,13 @@ repositories {
 }
 
 dependencies {
-	compile 'com.netflix.eureka2:eureka-write-server:2.0.0-DP4'
+	compile('com.netflix.eureka2:eureka-write-server:2.0.0-DP4') {
+		exclude module: 'slf4j-simple'
+	}
 	compile 'com.netflix.eureka2:eureka-client:2.0.0-DP4'
-	compile 'com.netflix.eureka2:eureka-dashboard:2.0.0-DP4'
+	compile ('com.netflix.eureka2:eureka-dashboard:2.0.0-DP4') {
+		exclude module: 'slf4j-simple'
+	}
 
 	compile 'org.slf4j:slf4j-api:1.7.7'
 	runtime 'ch.qos.logback:logback-classic:1.1.2'
