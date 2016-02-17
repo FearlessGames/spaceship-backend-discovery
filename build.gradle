@@ -1,4 +1,8 @@
 apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'se.fearless.spaceship.discovery.Discovery'
+applicationName = 'fearless-discovery'
 
 repositories {
     jcenter()
