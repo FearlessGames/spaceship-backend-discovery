@@ -1,8 +1,19 @@
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'docker'
+
+buildscript {
+	repositories { jcenter() }
+	dependencies {
+		classpath 'se.transmode.gradle:gradle-docker:1.2'
+	}
+}
 
 mainClassName = 'se.fearless.spaceship.discovery.Discovery'
 applicationName = 'fearless-discovery'
+
+group = 'se.fearless.spaceship.discovery'
+sourceCompatibility = 1.8
 
 repositories {
     jcenter()
@@ -19,4 +30,22 @@ dependencies {
 
 	compile 'org.slf4j:slf4j-api:1.7.7'
 	runtime 'ch.qos.logback:logback-classic:1.1.2'
+}
+
+applicationDistribution.from('src/main/resources') {
+	into 'bin'
+}
+
+
+
+docker {
+	baseImage "java:8"
+	maintainer 'Per Malmén "per.malmen@gmail.com"'
+}
+
+distDocker {
+	exposePort 2222
+	exposePort 2223
+	exposePort 2224
+	exposePort 2228
 }
